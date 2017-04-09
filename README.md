@@ -9,6 +9,13 @@ EasyPusher是EasyDarwin流媒体团队开发的一个推送流媒体音/视频�
 
 [![EasyPusher](http://www.easydarwin.org/github/images/easypusher20170305.png)](https://itunes.apple.com/us/app/easypusher/id1211967057?l=zh&ls=1&mt=8)
 
+
+
+- Android [https://fir.im/EasyPusher ](https://fir.im/EasyPusher "EasyPusher_Android")
+
+![EasyPusher_Android](http://demo.easydarwin.org/img/EasyPusher_AN.png)
+
+
 ## 版本更新记录 ##
 ### v1.0.17.0304 (Build 1) ###
 1. 支持摄像头切换
