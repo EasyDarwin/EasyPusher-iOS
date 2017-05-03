@@ -314,12 +314,12 @@ static CameraEncoder *selfClass =nil;
 
 int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame, void *_userptr)
 {
-    const char *expr = [[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigIP"] UTF8String];
-    char *ConfigIP = malloc(strlen(expr)+1);
-    strcpy(ConfigIP, expr);
-    const char *exIp = [[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigPORT"] cStringUsingEncoding:NSUTF8StringEncoding];
-    char *ConfigPort = malloc(strlen(exIp) + 1);
-    strcpy(ConfigPort, exIp);
+//    const char *expr = [[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigIP"] UTF8String];
+//    char *ConfigIP = malloc(strlen(expr)+1);
+//    strcpy(ConfigIP, expr);
+//    const char *exIp = [[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigPORT"] cStringUsingEncoding:NSUTF8StringEncoding];
+//    char *ConfigPort = malloc(strlen(exIp) + 1);
+//    strcpy(ConfigPort, exIp);
     if (_state == EASY_PUSH_STATE_CONNECTING)               {
         if (selfClass.delegate) {
             [selfClass.delegate getConnectStatus:@"连接中" isFist:0];
@@ -353,7 +353,6 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
             [selfClass.delegate getConnectStatus:@"断开连接" isFist:0];
         }
     }
-
     
     return 0;
 }
@@ -414,7 +413,7 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
 //    if(isReadyVideo && isReadyAudio) [rtp_h264 publish:packet timestamp:timestamp payloadType:98];
     
     CGFloat secs = CMTimeGetSeconds(timestamp);
-    UInt32 uSecs = (secs - (int)secs) * 1000 * 1000;
+//    UInt32 uSecs = (secs - (int)secs) * 1000 * 1000;
 
     EASY_AV_Frame frame;
     frame.pBuffer=(void*)packet.bytes;

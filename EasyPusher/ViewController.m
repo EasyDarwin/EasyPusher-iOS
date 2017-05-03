@@ -12,6 +12,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "EasyResolutionViewController.h"
 #import "EasyDarwinInfoViewController.h"
+#import <CoreTelephony/CTCellularData.h>
+#import "NoNetNotifieViewController.h"
 
 @interface ViewController ()<SetDelegate,EasyResolutionDelegate,ConnectDelegate>
 {
@@ -65,6 +67,7 @@
     changeButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:changeButton];
     [changeButton setTitle:@"切换" forState:UIControlStateNormal];
+//    [changeButton setImage:[UIImage imageNamed:@"switch_camera"] forState:UIControlStateNormal];
     [changeButton autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:settingButton withOffset:5.0];
     [changeButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0.0];
     [changeButton autoSetDimension:ALDimensionWidth toSize:80];
@@ -108,7 +111,30 @@
     [urlLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:startButton withOffset:-10.0];
     [urlLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20.0];
     [urlLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20.0];
-    
+    [self getPushName];
+}
+
+- (void)getPushName{
+    NSMutableString *randomNum = [[NSMutableString alloc] init];
+    for(int i = 0; i < 6;i++){
+        int num = arc4random() % 10;
+        [randomNum appendString:[NSString stringWithFormat:@"%d",num]];
+    }
+    [randomNum appendString:@".sdp"];
+    [[NSUserDefaults standardUserDefaults] setObject:randomNum forKey:@"PushName"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)showAuthorityView{
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NoNetNotifieViewController *vc = [[NoNetNotifieViewController alloc] init];
+            [weakSelf presentViewController:vc animated:YES completion:nil];
+        });
+    });
+   
 }
 
 - (void)showInfo{
@@ -138,25 +164,46 @@
 
 - (IBAction)startAction:(id)sender
 {
+    
     if (!encoder.running)
     {
         
         [startButton setTitle:@"停止推流" forState:UIControlStateNormal];
-        NSMutableString *randomNum = [[NSMutableString alloc] init];
-        for(int i = 0; i < 6;i++){
-            int num = arc4random() % 10;
-            [randomNum appendString:[NSString stringWithFormat:@"%d",num]];
-        }
-        [randomNum appendString:@".sdp"];
-        urlName = [randomNum copy];
+//        NSMutableString *randomNum = [[NSMutableString alloc] init];
+//        for(int i = 0; i < 6;i++){
+//            int num = arc4random() % 10;
+//            [randomNum appendString:[NSString stringWithFormat:@"%d",num]];
+//        }
+//        [randomNum appendString:@".sdp"];
+        urlName = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushName"];
       
-        [encoder startCamera:randomNum];
+        [encoder startCamera:urlName];
     }
     else
     {
         [startButton setTitle:@"开始推流" forState:UIControlStateNormal];
         [encoder stopCamera];
     }
+    __weak typeof(self)weakSelf = self;
+    CTCellularData *cellularData = [[CTCellularData alloc]init];
+    cellularData.cellularDataRestrictionDidUpdateNotifier =  ^(CTCellularDataRestrictedState state){
+        //获取联网状态
+        switch (state) {
+            case kCTCellularDataRestricted:
+//                NSLog(@"Restricrted");
+//                [weakSelf showAuthorityView];
+                break;
+            case kCTCellularDataNotRestricted:
+//                NSLog(@"Not Restricted");
+                break;
+            case kCTCellularDataRestrictedStateUnknown:
+                [weakSelf showAuthorityView];
+                break;
+            default:
+                break;
+        };
+    };
+
 }
 
 - (void)getConnectStatus:(NSString *)status isFist:(int)tag{
@@ -172,8 +219,6 @@
         }else{
             statusString = status;
         }
-        
-        
     }else{
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

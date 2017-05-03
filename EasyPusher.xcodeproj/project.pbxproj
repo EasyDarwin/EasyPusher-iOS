@@ -16,6 +16,10 @@
 		A1195C591E69A22300535E11 /* EasyResolutionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1195C571E69A22300535E11 /* EasyResolutionViewController.xib */; };
 		A1195C5D1E6A6FE200535E11 /* EasyDarwinInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1195C5B1E6A6FE200535E11 /* EasyDarwinInfoViewController.m */; };
 		A1195C5E1E6A6FE200535E11 /* EasyDarwinInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1195C5C1E6A6FE200535E11 /* EasyDarwinInfoViewController.xib */; };
+		A1195D251E73A1BD00535E11 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1195D241E73A1BD00535E11 /* CoreTelephony.framework */; };
+		A1195D291E73D43200535E11 /* NoNetNotifieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1195D271E73D43200535E11 /* NoNetNotifieViewController.m */; };
+		A1195D2F1E73D81E00535E11 /* NoNetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1195D2D1E73D81E00535E11 /* NoNetTableViewCell.m */; };
+		A1195D301E73D81E00535E11 /* NoNetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1195D2E1E73D81E00535E11 /* NoNetTableViewCell.xib */; };
 		A175F55B1E24D32F00C76B21 /* EasySetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A175F55A1E24D32F00C76B21 /* EasySetingViewController.m */; };
 		A1CBFC4B1E4F099900588740 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1CBFC4A1E4F099900588740 /* AVFoundation.framework */; };
 		F6C5102F1D858306001EB536 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C5102E1D858306001EB536 /* main.m */; };
@@ -51,6 +55,12 @@
 		A1195C5A1E6A6FE200535E11 /* EasyDarwinInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyDarwinInfoViewController.h; sourceTree = "<group>"; };
 		A1195C5B1E6A6FE200535E11 /* EasyDarwinInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyDarwinInfoViewController.m; sourceTree = "<group>"; };
 		A1195C5C1E6A6FE200535E11 /* EasyDarwinInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EasyDarwinInfoViewController.xib; sourceTree = "<group>"; };
+		A1195D241E73A1BD00535E11 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A1195D261E73D43200535E11 /* NoNetNotifieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoNetNotifieViewController.h; sourceTree = "<group>"; };
+		A1195D271E73D43200535E11 /* NoNetNotifieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoNetNotifieViewController.m; sourceTree = "<group>"; };
+		A1195D2C1E73D81E00535E11 /* NoNetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoNetTableViewCell.h; sourceTree = "<group>"; };
+		A1195D2D1E73D81E00535E11 /* NoNetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoNetTableViewCell.m; sourceTree = "<group>"; };
+		A1195D2E1E73D81E00535E11 /* NoNetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetTableViewCell.xib; sourceTree = "<group>"; };
 		A175F5591E24D32F00C76B21 /* EasySetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasySetingViewController.h; sourceTree = "<group>"; };
 		A175F55A1E24D32F00C76B21 /* EasySetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasySetingViewController.m; sourceTree = "<group>"; };
 		A1CBFC4A1E4F099900588740 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -84,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1195D251E73A1BD00535E11 /* CoreTelephony.framework in Frameworks */,
 				A1CBFC4B1E4F099900588740 /* AVFoundation.framework in Frameworks */,
 				F6C510481D858319001EB536 /* libEasyPusher.a in Frameworks */,
 			);
@@ -111,6 +122,7 @@
 		A1CBFC491E4F099900588740 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1195D241E73A1BD00535E11 /* CoreTelephony.framework */,
 				A1CBFC4A1E4F099900588740 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
@@ -153,6 +165,11 @@
 				A1195C5A1E6A6FE200535E11 /* EasyDarwinInfoViewController.h */,
 				A1195C5B1E6A6FE200535E11 /* EasyDarwinInfoViewController.m */,
 				A1195C5C1E6A6FE200535E11 /* EasyDarwinInfoViewController.xib */,
+				A1195D261E73D43200535E11 /* NoNetNotifieViewController.h */,
+				A1195D271E73D43200535E11 /* NoNetNotifieViewController.m */,
+				A1195D2C1E73D81E00535E11 /* NoNetTableViewCell.h */,
+				A1195D2D1E73D81E00535E11 /* NoNetTableViewCell.m */,
+				A1195D2E1E73D81E00535E11 /* NoNetTableViewCell.xib */,
 			);
 			path = EasyPusher;
 			sourceTree = "<group>";
@@ -271,6 +288,7 @@
 				A1195C591E69A22300535E11 /* EasyResolutionViewController.xib in Resources */,
 				F6C5103A1D858306001EB536 /* Assets.xcassets in Resources */,
 				F6C510381D858306001EB536 /* Main.storyboard in Resources */,
+				A1195D301E73D81E00535E11 /* NoNetTableViewCell.xib in Resources */,
 				3638568A1DE340FE0052B0F9 /* ServerInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,10 +304,12 @@
 				F6C510651D8669DA001EB536 /* H264HWEncoder.m in Sources */,
 				F6C510661D8669DA001EB536 /* H264Packet.m in Sources */,
 				363856891DE340FE0052B0F9 /* ServerInfoViewController.m in Sources */,
+				A1195D2F1E73D81E00535E11 /* NoNetTableViewCell.m in Sources */,
 				F6C510351D858306001EB536 /* ViewController.m in Sources */,
 				F6C510711D880B76001EB536 /* CameraEncoder.m in Sources */,
 				A1195C5D1E6A6FE200535E11 /* EasyDarwinInfoViewController.m in Sources */,
 				F6C510631D8669DA001EB536 /* AACEncoder.m in Sources */,
+				A1195D291E73D43200535E11 /* NoNetNotifieViewController.m in Sources */,
 				3622FEB81DE07CFA007B9A52 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				A175F55B1E24D32F00C76B21 /* EasySetingViewController.m in Sources */,
 				F6C510641D8669DA001EB536 /* H264HWDecoder.m in Sources */,
