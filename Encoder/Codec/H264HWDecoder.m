@@ -309,7 +309,7 @@ void decompressionSessionDecodeFrameCallback(void *decompressionOutputRefCon,
     NSDate* currentTime = [NSDate date];
     VTDecompressionSessionDecodeFrame(_decompressionSession, sampleBuffer, flags,
                                       (void*)CFBridgingRetain(currentTime), &flagOut);
-    
+    CFBridgingRelease((void*)CFBridgingRetain(currentTime));
     CFRelease(sampleBuffer);
     
     //if you're using AVSampleBufferDisplayLayer, you only need to use this line of code

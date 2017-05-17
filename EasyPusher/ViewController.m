@@ -115,14 +115,17 @@
 }
 
 - (void)getPushName{
-    NSMutableString *randomNum = [[NSMutableString alloc] init];
-    for(int i = 0; i < 6;i++){
-        int num = arc4random() % 10;
-        [randomNum appendString:[NSString stringWithFormat:@"%d",num]];
+    NSString *pushName = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushName"];
+    if (!pushName) {
+        NSMutableString *randomNum = [[NSMutableString alloc] init];
+        for(int i = 0; i < 6;i++){
+            int num = arc4random() % 10;
+            [randomNum appendString:[NSString stringWithFormat:@"%d",num]];
+        }
+        [randomNum appendString:@".sdp"];
+        [[NSUserDefaults standardUserDefaults] setObject:randomNum forKey:@"PushName"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    [randomNum appendString:@".sdp"];
-    [[NSUserDefaults standardUserDefaults] setObject:randomNum forKey:@"PushName"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)showAuthorityView{

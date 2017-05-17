@@ -8,8 +8,6 @@
 #import "CameraEncoder.h"
 
 
-#define KEY "6A34714D6C354F576B5971414A553558714C485A4576466C59584E356348567A6147567958334E6B61395A58444661672F704C67523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
-
 //char* ConfigIP		= "121.40.50.44";	//Default EasyDarwin Address
 //char* ConfigIP		= "114.55.107.180";
 ////char* ConfigPort	= "554";			//Default EasyDarwin Port
@@ -36,7 +34,10 @@ static CameraEncoder *selfClass =nil;
 //    NSFileHandle *fileH264Handle;
 //    NSFileHandle *fileAACHandle;
 }
-
+@property (nonatomic , strong)AVAssetWriter *videoWriter;
+@property (nonatomic , strong)AVAssetWriterInput *videoWriterInput;
+@property(nonatomic , strong)AVAssetWriterInputPixelBufferAdaptor *adaptor;
+@property(nonatomic ,strong)AVAssetWriterInput *audioWriterInput;
 @end
 
 @implementation CameraEncoder
@@ -55,9 +56,10 @@ static CameraEncoder *selfClass =nil;
     
     running = NO;
     /*
-       激活授权码，
+     *激活授权码，
+     *本Key为3个月临时授权License，如需商业使用，请邮件至support@easydarwin.org申请此产品的授权。
      */
-    if (EasyPusher_Activate("6A36334A742F2B32734B794141377059703058384A66787062334E58444661672F365867523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D") == 0) {
+    if (EasyPusher_Activate("6A36334A742F2B32734B79416B68745A707552744A66564659584E355548567A61475679766C634D5671442F7065424859585A7062695A4359574A76633246414D6A41784E6B566863336C4559584A33615735555A5746745A57467A65513D3D") == 0) {
         if (_delegate) {
             [_delegate getConnectStatus:@"激活成功" isFist:1];
         }
@@ -80,6 +82,7 @@ static CameraEncoder *selfClass =nil;
     
     encodeQueue = dispatch_queue_create("encodeQueue", NULL);
      selfClass =self;
+    [self initVideoAudioWriter];
 }
 
 - (void)dealloc {
@@ -310,6 +313,7 @@ static CameraEncoder *selfClass =nil;
     running = YES;
     free(ConfigIP);
     free(ConfigPort);
+    free(name);
 }
 
 int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame, void *_userptr)
@@ -369,11 +373,63 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
     CFRetain(sampleBuffer);
     if(connection == self.videoConnection)
     {
+//        static int frame1 = 0;
+//        CMTime lastSampleTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+//        
+//        if( frame1 == 0 && _videoWriter.status != AVAssetWriterStatusWriting &&  _videoWriter.status != AVAssetWriterStatusFailed)
+//            
+//        {
+//            BOOL success = [_videoWriter startWriting];
+//            
+//            //            [_videoWriter startSessionAtSourceTime:CMTimeMake(1, 25)];
+//            [_videoWriter startSessionAtSourceTime:lastSampleTime];
+//            
+//        } if( _videoWriter.status > AVAssetWriterStatusWriting )
+//            
+//        {
+//            
+//            NSLog(@"Warning: writer status is %zd", _videoWriter.status);
+//            if( _videoWriter.status == AVAssetWriterStatusFailed )
+//                
+//                NSLog(@"Error: %@",_videoWriter.error);
+//            
+//            return;
+//            
+//        }
+//        if (_videoWriter.status == AVAssetWriterStatusWriting) {
+//            if ([_videoWriterInput isReadyForMoreMediaData])
+//            {
+//               
+//                if( ![_videoWriterInput appendSampleBuffer:sampleBuffer])
+//                {
+//                    NSLog(@"Unable to write to video input");
+//                }
+//                else
+//                {
+//                    NSLog(@"already write vidio");
+//                }
+//            }
+//            frame1++;
+//            
+//        }
+//        if (frame1 == 20) {
+//            [_videoWriterInput markAsFinished];
+//            [_videoWriter finishWritingWithCompletionHandler:^{
+//                NSFileManager* manager = [NSFileManager defaultManager];
+//                NSString *filePath = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie.mp4"];
+//                if ([manager fileExistsAtPath:filePath]){
+//                    NSLog(@"%lld",[[manager attributesOfItemAtPath:filePath error:nil] fileSize]);
+//                    
+//                }
+//            }];
+//        }
+
         if (running)
         {
             dispatch_async(encodeQueue, ^{
                 
                 [h264Encoder encode:sampleBuffer];
+                
                 CFRelease(sampleBuffer);
             });
         }
@@ -431,6 +487,151 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
     }//[publish:packet timestamp:timestamp payloadType:98];
 }
 
+-(void) initVideoAudioWriter
+
+{
+    
+    CGSize size = CGSizeMake(480, 320);
+    
+    NSString *betaCompressionDirectory = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie.mp4"];
+    
+    
+    
+    NSError *error = nil;
+    
+    
+    
+    unlink([betaCompressionDirectory UTF8String]);
+    
+    
+    
+    //----initialize compression engine
+    
+    self.videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:betaCompressionDirectory]
+                        
+                                                 fileType:AVFileTypeMPEG4
+                        
+                                                    error:&error];
+    
+    NSParameterAssert(self.videoWriter);
+    
+    if(error)
+        
+        NSLog(@"error = %@", [error localizedDescription]);
+    
+    NSDictionary *videoCompressionProps = [NSDictionary dictionaryWithObjectsAndKeys:
+                                           
+                                           [NSNumber numberWithDouble:128.0*1024.0],AVVideoAverageBitRateKey,
+                                           
+                                           nil ];
+    
+    
+    
+    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
+                                   
+                                   [NSNumber numberWithInt:size.width], AVVideoWidthKey,
+                                   
+                                   [NSNumber numberWithInt:size.height],AVVideoHeightKey,videoCompressionProps, AVVideoCompressionPropertiesKey, nil];
+    
+    self.videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
+    
+    
+    
+    NSParameterAssert(self.videoWriterInput);
+    
+    
+    
+    self.videoWriterInput.expectsMediaDataInRealTime = YES;
+    
+    
+    
+    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           
+                                                           [NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange], kCVPixelBufferPixelFormatTypeKey, nil];
+    
+    
+    
+    self.adaptor = [AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:self.videoWriterInput
+                    
+                                                                                    sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
+    
+    NSParameterAssert(self.videoWriterInput);
+    
+    NSParameterAssert([self.videoWriter canAddInput:self.videoWriterInput]);
+    
+//    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:nil];
+    //提前create  CVPixelBufferRef，避免每次create
+//    int cvRet = CVPixelBufferCreate(kCFAllocatorDefault,480, 320,kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)(options),&_pixelBuffer);
+    
+    if ([self.videoWriter canAddInput:self.videoWriterInput])
+    {
+        NSLog(@"I can add this input");
+    }else{
+        NSLog(@"i can't add this input");
+    }
+    
+    
+    // Add the audio input
+    
+    AudioChannelLayout acl;
+    
+    bzero( &acl, sizeof(acl));
+    
+    acl.mChannelLayoutTag = kAudioChannelLayoutTag_Mono;
+    
+    
+    
+    NSDictionary* audioOutputSettings = nil;
+    
+    //    audioOutputSettings = [ NSDictionary dictionaryWithObjectsAndKeys:
+    
+    //                           [ NSNumber numberWithInt: kAudioFormatAppleLossless ], AVFormatIDKey,
+    
+    //                           [ NSNumber numberWithInt: 16 ], AVEncoderBitDepthHintKey,
+    
+    //                           [ NSNumber numberWithFloat: 44100.0 ], AVSampleRateKey,
+    
+    //                           [ NSNumber numberWithInt: 1 ], AVNumberOfChannelsKey,
+    
+    //                           [ NSData dataWithBytes: &acl length: sizeof( acl ) ], AVChannelLayoutKey,
+    
+    //                           nil ];
+    
+    audioOutputSettings = [ NSDictionary dictionaryWithObjectsAndKeys:
+                           
+                           [ NSNumber numberWithInt: kAudioFormatMPEG4AAC ], AVFormatIDKey,
+                           
+                           [ NSNumber numberWithInt:64000], AVEncoderBitRateKey,
+                           
+                           [ NSNumber numberWithFloat: 44100.0 ], AVSampleRateKey,
+                           
+                           [ NSNumber numberWithInt: 1 ], AVNumberOfChannelsKey,
+                           
+                           [ NSData dataWithBytes: &acl length: sizeof( acl ) ], AVChannelLayoutKey,
+                           
+                           nil ];
+    
+    
+    
+    //    _audioWriterInput = [AVAssetWriterInput
+    //
+    //                         assetWriterInputWithMediaType: AVMediaTypeAudio
+    //
+    //                         outputSettings: audioOutputSettings ];
+    //
+    //
+    //
+    //    _audioWriterInput.expectsMediaDataInRealTime = YES;
+    //
+    //    // add input
+    //
+    //    [_videoWriter addInput:_audioWriterInput];
+    
+    [_videoWriter addInput:_videoWriterInput];
+    
+}
+
+
 #if TARGET_OS_IPHONE
 #pragma mark - AACEncoderDelegate declare
 
@@ -461,6 +662,8 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
     }//[rtp_aac publish:data timestamp:timestamp payloadType:97];
 
 }
+
+
 #endif
 
 
