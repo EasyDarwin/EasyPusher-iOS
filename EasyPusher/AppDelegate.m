@@ -17,9 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSString *host = [[NSUserDefaults standardUserDefaults] objectForKey:@"www.easydarwin.org"];
-    if (!host) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"www.easydarwin.org" forKey:@"ConfigIP"];
+    NSString *host = [[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigIP"];
+    
+    if (!host || [host isEqualToString:@"www.easydarwin.org"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"cloud.easydarwin.org" forKey:@"ConfigIP"];
         [[NSUserDefaults standardUserDefaults] setObject:@"554" forKey:@"ConfigPORT"];
         [[NSUserDefaults standardUserDefaults] setObject:@"480*640" forKey:@"resolition"];                         
     }
