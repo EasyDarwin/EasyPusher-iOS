@@ -15,13 +15,15 @@
 #import <CoreTelephony/CTCellularData.h>
 #import "NoNetNotifieViewController.h"
 
-@interface ViewController ()<SetDelegate,EasyResolutionDelegate,ConnectDelegate>
-{
+@interface ViewController ()<EasyResolutionDelegate, ConnectDelegate> {
     UIButton *startButton;
     UIButton *settingButton;
+    
     NSString *urlName;
     NSString *statusString;
 }
+
+@property (nonatomic, strong) AVCaptureVideoPreviewLayer *prev;
 
 @end
 
@@ -29,18 +31,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     encoder = [[CameraEncoder alloc] init];
     encoder.delegate = self;
     [encoder initCameraWithOutputSize:CGSizeMake(480, 640)];
     
     encoder.previewLayer.frame = self.view.bounds;
     [self.view.layer addSublayer:encoder.previewLayer];
-    AVCaptureVideoPreviewLayer *prev = encoder.previewLayer;
-    [[prev connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
-    prev.frame = self.view.bounds;
+    
+    self.prev = encoder.previewLayer;
+    [[self.prev connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
+    self.prev.frame = self.view.bounds;
+    
     encoder.previewLayer.hidden = NO;
     [encoder startCapture];
-
+    
     startButton = [UIButton buttonWithType:UIButtonTypeCustom];
     startButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:startButton];
@@ -75,7 +80,6 @@
     changeButton.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
     [changeButton addTarget:self action:@selector(toggleCamera) forControlEvents:UIControlEventTouchUpInside];
     
-    
     UIButton *resolutionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     resolutionBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:resolutionBtn];
@@ -88,17 +92,25 @@
 //    resolutionBtn.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
     [resolutionBtn addTarget:self action:@selector(showPop) forControlEvents:UIControlEventTouchUpInside];
     
-    
     UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     infoBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:infoBtn];
     [infoBtn setImage:[UIImage imageNamed:@"ic_action_about"] forState:UIControlStateNormal];
-    
     [infoBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     [infoBtn autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0];
     [infoBtn autoSetDimension:ALDimensionWidth toSize:30];
     [infoBtn autoSetDimension:ALDimensionHeight toSize:30];
     [infoBtn addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *landBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    landBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    [landBtn setTitle:@"竖屏" forState:UIControlStateNormal];
+    [landBtn addTarget:self action:@selector(landScreen:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:landBtn];
+    [landBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:70];
+    [landBtn autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0];
+    [landBtn autoSetDimension:ALDimensionWidth toSize:80];
+    [landBtn autoSetDimension:ALDimensionHeight toSize:30];
     
     UILabel *urlLabel = [[UILabel alloc] init];
     urlLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -114,7 +126,7 @@
     [self getPushName];
 }
 
-- (void)getPushName{
+- (void)getPushName {
     NSString *pushName = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushName"];
     if (!pushName) {
         NSMutableString *randomNum = [[NSMutableString alloc] init];
@@ -128,49 +140,72 @@
     }
 }
 
-- (void)showAuthorityView{
+- (void)showAuthorityView {
     __weak typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             NoNetNotifieViewController *vc = [[NoNetNotifieViewController alloc] init];
             [weakSelf presentViewController:vc animated:YES completion:nil];
         });
     });
-   
 }
 
-- (void)showInfo{
+#pragma mark - click event
+
+- (void)showInfo {
     EasyDarwinInfoViewController *infoVc = [[EasyDarwinInfoViewController alloc] init];
     [self presentViewController:infoVc animated:YES completion:nil];
 }
 
-- (void)showPop{
+// 横竖屏切换
+- (void) landScreen:(UIButton *)btn {
+    // 竖屏->左横屏->右横屏
+    NSString *title = btn.titleLabel.text;
+    
+    if ([title isEqualToString:@"竖屏"]) {
+        [btn setTitle:@"左横屏" forState:UIControlStateNormal];
+        
+        // 左横屏
+        [[self.prev connection] setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
+        encoder.videoConnection.videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+    } else if ([title isEqualToString:@"左横屏"]) {
+        [btn setTitle:@"右横屏" forState:UIControlStateNormal];
+        
+        // 右横屏
+        [[self.prev connection] setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+        encoder.videoConnection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+    } else {
+        [btn setTitle:@"竖屏" forState:UIControlStateNormal];
+        
+        // 竖屏
+        [[self.prev connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
+        encoder.videoConnection.videoOrientation = AVCaptureVideoOrientationPortrait;
+    }
+}
+
+- (void)showPop {
     if (encoder.running) {
         return;
     }
+    
     EasyResolutionViewController *popVc = [[EasyResolutionViewController alloc] init];
     popVc.delegate = self;
     popVc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:popVc animated:YES completion:nil];
 }
 
-- (void)onSelecedesolution:(NSInteger)resolutionNo{
+- (void)onSelecedesolution:(NSInteger)resolutionNo {
     [encoder swapResolution];
     UIButton *resolutionBtn = (UIButton *)[self.view viewWithTag:100001];
     [resolutionBtn setTitle:[NSString stringWithFormat:@"分辨率:%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"resolition"]] forState:UIControlStateNormal];
 }
 
-- (void)toggleCamera{
+- (void)toggleCamera {
     [encoder swapFrontAndBackCameras];
 }
 
-- (IBAction)startAction:(id)sender
-{
-    
-    if (!encoder.running)
-    {
-        
+- (IBAction)startAction:(id)sender {
+    if (!encoder.running) {
         [startButton setTitle:@"停止推流" forState:UIControlStateNormal];
 //        NSMutableString *randomNum = [[NSMutableString alloc] init];
 //        for(int i = 0; i < 6;i++){
@@ -179,14 +214,12 @@
 //        }
 //        [randomNum appendString:@".sdp"];
         urlName = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushName"];
-      
         [encoder startCamera:urlName];
-    }
-    else
-    {
+    } else {
         [startButton setTitle:@"开始推流" forState:UIControlStateNormal];
         [encoder stopCamera];
     }
+    
     __weak typeof(self)weakSelf = self;
     CTCellularData *cellularData = [[CTCellularData alloc]init];
     cellularData.cellularDataRestrictionDidUpdateNotifier =  ^(CTCellularDataRestrictedState state){
@@ -222,29 +255,20 @@
         }else{
             statusString = status;
         }
-    }else{
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            label.text = [NSString stringWithFormat:@"%@\nrtsp://%@:%@/%@",status,[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigIP"],[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigPORT"],urlName];
+    } else {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                label.text = [NSString stringWithFormat:@"%@\nrtsp://%@:%@/%@",status,[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigIP"],[[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigPORT"],urlName];
+            });
         });
-    });
     }
 }
 
-
-- (IBAction)settingAction:(id)sender
-{
+- (IBAction)settingAction:(id)sender {
     [startButton setTitle:@"开始推流" forState:UIControlStateNormal];
     [encoder stopCamera];
     EasySetingViewController *setVc = [[EasySetingViewController alloc] init];
     [self presentViewController:setVc animated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

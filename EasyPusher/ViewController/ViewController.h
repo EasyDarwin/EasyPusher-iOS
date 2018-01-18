@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CameraEncoder.h"
 
-@interface ViewController : UIViewController{
+@interface ViewController : UIViewController {
     CameraEncoder *encoder;
-    
 }
 
-
 @end
-

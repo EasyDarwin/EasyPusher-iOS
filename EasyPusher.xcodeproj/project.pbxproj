@@ -46,9 +46,9 @@
 		3622FEB31DE07CFA007B9A52 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
 		3622FEB41DE07CFA007B9A52 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
 		3622FEB51DE07CFA007B9A52 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
-		363856861DE340FE0052B0F9 /* ServerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerInfoViewController.h; path = EasyPusher/ServerInfoViewController.h; sourceTree = SOURCE_ROOT; };
-		363856871DE340FE0052B0F9 /* ServerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerInfoViewController.m; path = EasyPusher/ServerInfoViewController.m; sourceTree = SOURCE_ROOT; };
-		363856881DE340FE0052B0F9 /* ServerInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerInfoViewController.xib; path = EasyPusher/ServerInfoViewController.xib; sourceTree = SOURCE_ROOT; };
+		363856861DE340FE0052B0F9 /* ServerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerInfoViewController.h; path = EasyPusher/ViewController/Additional/ServerInfoViewController.h; sourceTree = SOURCE_ROOT; };
+		363856871DE340FE0052B0F9 /* ServerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerInfoViewController.m; path = EasyPusher/ViewController/Additional/ServerInfoViewController.m; sourceTree = SOURCE_ROOT; };
+		363856881DE340FE0052B0F9 /* ServerInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerInfoViewController.xib; path = EasyPusher/ViewController/Additional/ServerInfoViewController.xib; sourceTree = SOURCE_ROOT; };
 		A1195C551E69A22300535E11 /* EasyResolutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyResolutionViewController.h; sourceTree = "<group>"; };
 		A1195C561E69A22300535E11 /* EasyResolutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyResolutionViewController.m; sourceTree = "<group>"; };
 		A1195C571E69A22300535E11 /* EasyResolutionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EasyResolutionViewController.xib; sourceTree = "<group>"; };
@@ -119,6 +119,39 @@
 			path = PureLayout;
 			sourceTree = "<group>";
 		};
+		667D99DA2007B80B00F580D7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F6C510331D858306001EB536 /* ViewController.h */,
+				F6C510341D858306001EB536 /* ViewController.m */,
+				667D99DB2007B87500F580D7 /* Additional */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		667D99DB2007B87500F580D7 /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				A1195C551E69A22300535E11 /* EasyResolutionViewController.h */,
+				A1195C561E69A22300535E11 /* EasyResolutionViewController.m */,
+				A1195C571E69A22300535E11 /* EasyResolutionViewController.xib */,
+				A175F5591E24D32F00C76B21 /* EasySetingViewController.h */,
+				A175F55A1E24D32F00C76B21 /* EasySetingViewController.m */,
+				A1195C5A1E6A6FE200535E11 /* EasyDarwinInfoViewController.h */,
+				A1195C5B1E6A6FE200535E11 /* EasyDarwinInfoViewController.m */,
+				A1195C5C1E6A6FE200535E11 /* EasyDarwinInfoViewController.xib */,
+				A1195D261E73D43200535E11 /* NoNetNotifieViewController.h */,
+				A1195D271E73D43200535E11 /* NoNetNotifieViewController.m */,
+				A1195D2C1E73D81E00535E11 /* NoNetTableViewCell.h */,
+				A1195D2D1E73D81E00535E11 /* NoNetTableViewCell.m */,
+				A1195D2E1E73D81E00535E11 /* NoNetTableViewCell.xib */,
+				363856861DE340FE0052B0F9 /* ServerInfoViewController.h */,
+				363856871DE340FE0052B0F9 /* ServerInfoViewController.m */,
+				363856881DE340FE0052B0F9 /* ServerInfoViewController.xib */,
+			);
+			path = Additional;
+			sourceTree = "<group>";
+		};
 		A1CBFC491E4F099900588740 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,28 +181,11 @@
 		F6C5102C1D858306001EB536 /* EasyPusher */ = {
 			isa = PBXGroup;
 			children = (
+				667D99DA2007B80B00F580D7 /* ViewController */,
 				F6C510491D865516001EB536 /* Encoder */,
 				F6C510441D858319001EB536 /* EasyPusher */,
-				F6C510301D858306001EB536 /* AppDelegate.h */,
-				F6C510311D858306001EB536 /* AppDelegate.m */,
-				F6C510331D858306001EB536 /* ViewController.h */,
-				F6C510341D858306001EB536 /* ViewController.m */,
-				F6C510361D858306001EB536 /* Main.storyboard */,
 				3622FEAC1DE07CFA007B9A52 /* PureLayout */,
-				F6C510391D858306001EB536 /* Assets.xcassets */,
-				F6C5103B1D858306001EB536 /* LaunchScreen.storyboard */,
-				F6C5103E1D858306001EB536 /* Info.plist */,
 				F6C5102D1D858306001EB536 /* Supporting Files */,
-				A175F5591E24D32F00C76B21 /* EasySetingViewController.h */,
-				A175F55A1E24D32F00C76B21 /* EasySetingViewController.m */,
-				A1195C5A1E6A6FE200535E11 /* EasyDarwinInfoViewController.h */,
-				A1195C5B1E6A6FE200535E11 /* EasyDarwinInfoViewController.m */,
-				A1195C5C1E6A6FE200535E11 /* EasyDarwinInfoViewController.xib */,
-				A1195D261E73D43200535E11 /* NoNetNotifieViewController.h */,
-				A1195D271E73D43200535E11 /* NoNetNotifieViewController.m */,
-				A1195D2C1E73D81E00535E11 /* NoNetTableViewCell.h */,
-				A1195D2D1E73D81E00535E11 /* NoNetTableViewCell.m */,
-				A1195D2E1E73D81E00535E11 /* NoNetTableViewCell.xib */,
 			);
 			path = EasyPusher;
 			sourceTree = "<group>";
@@ -177,7 +193,13 @@
 		F6C5102D1D858306001EB536 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F6C510301D858306001EB536 /* AppDelegate.h */,
+				F6C510311D858306001EB536 /* AppDelegate.m */,
+				F6C510361D858306001EB536 /* Main.storyboard */,
+				F6C5103B1D858306001EB536 /* LaunchScreen.storyboard */,
+				F6C5103E1D858306001EB536 /* Info.plist */,
 				F6C5102E1D858306001EB536 /* main.m */,
+				F6C510391D858306001EB536 /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -198,13 +220,7 @@
 			children = (
 				F6C5106F1D880B76001EB536 /* CameraEncoder.h */,
 				F6C510701D880B76001EB536 /* CameraEncoder.m */,
-				363856861DE340FE0052B0F9 /* ServerInfoViewController.h */,
-				363856871DE340FE0052B0F9 /* ServerInfoViewController.m */,
-				363856881DE340FE0052B0F9 /* ServerInfoViewController.xib */,
 				F6C5105A1D8669DA001EB536 /* Codec */,
-				A1195C551E69A22300535E11 /* EasyResolutionViewController.h */,
-				A1195C561E69A22300535E11 /* EasyResolutionViewController.m */,
-				A1195C571E69A22300535E11 /* EasyResolutionViewController.xib */,
 			);
 			path = Encoder;
 			sourceTree = SOURCE_ROOT;

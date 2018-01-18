@@ -7,22 +7,23 @@
 //
 #import "CameraEncoder.h"
 
-
 //char* ConfigIP		= "121.40.50.44";	//Default EasyDarwin Address
 //char* ConfigIP		= "114.55.107.180";
 ////char* ConfigPort	= "554";			//Default EasyDarwin Port
 //char* ConfigPort	= "10554";
+
 char* ConfigName	= "ios11.sdp";//Default Push StreamName
 char* ConfigUName	= "admin";			//SDK UserName
 char* ConfigPWD		= "admin";			//SDK Password
 char* ConfigDHost	= "192.168.66.189";	//SDK Host
 char* ConfigDPort	= "80";				//SDK Port
 char *ProgName;		//Program Name
-static CameraEncoder *selfClass =nil;
-@interface CameraEncoder ()
-{
-    H264HWEncoder *h264Encoder;
 
+static CameraEncoder *selfClass =nil;
+
+@interface CameraEncoder () {
+    H264HWEncoder *h264Encoder;
+    
     AACEncoder *aacEncoder;
     Easy_I32 isActivated;
     Easy_Pusher_Handle handle;
@@ -34,17 +35,19 @@ static CameraEncoder *selfClass =nil;
 //    NSFileHandle *fileH264Handle;
 //    NSFileHandle *fileAACHandle;
 }
+
 @property (nonatomic , strong)AVAssetWriter *videoWriter;
 @property (nonatomic , strong)AVAssetWriterInput *videoWriterInput;
 @property(nonatomic , strong)AVAssetWriterInputPixelBufferAdaptor *adaptor;
 @property(nonatomic ,strong)AVAssetWriterInput *audioWriterInput;
+
 @end
 
 @implementation CameraEncoder
+
 @synthesize running;
 
-- (void)initCameraWithOutputSize:(CGSize)size
-{
+- (void)initCameraWithOutputSize:(CGSize)size {
     h264Encoder = [[H264HWEncoder alloc] init];
     [h264Encoder setOutputSize:size];
     h264Encoder.delegate = self;
@@ -63,15 +66,13 @@ static CameraEncoder *selfClass =nil;
         if (_delegate) {
             [_delegate getConnectStatus:@"激活成功" isFist:1];
         }
-        
-    }else{
+    } else {
         [_delegate getConnectStatus:@"激活失败" isFist:1];
-//        NSLog(@"激活失败");
     }
     
     handle = EasyPusher_Create();
     EasyPusher_SetEventCallback(handle,easyPusher_Callback, 1, "123");
-
+    
     _encodeVideoQueue = dispatch_queue_create( "encodeVideoQueue", DISPATCH_QUEUE_SERIAL );
     _encodeAudioQueue = dispatch_queue_create( "encodeAudioQueue", DISPATCH_QUEUE_SERIAL );
     CMSimpleQueueCreate(kCFAllocatorDefault, 2, &vbuffQueue);
@@ -94,9 +95,7 @@ static CameraEncoder *selfClass =nil;
 
 #pragma mark - Camera Control
 
-
-- (void)setupAudioCapture
-{
+- (void)setupAudioCapture {
     AVCaptureDevice *audioDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
     NSError *error = nil;
     AVCaptureDeviceInput *audioInput = [[AVCaptureDeviceInput alloc]initWithDevice:audioDevice error:&error];
@@ -107,10 +106,10 @@ static CameraEncoder *selfClass =nil;
     if ([self.videoCaptureSession canAddInput:audioInput]) {
         [self.videoCaptureSession addInput:audioInput];
     }
-
+    
     self.AudioQueue = dispatch_queue_create("Audio Capture Queue", DISPATCH_QUEUE_SERIAL);
     AVCaptureAudioDataOutput *audioOutput = [AVCaptureAudioDataOutput new];
-
+    
     [audioOutput setSampleBufferDelegate:self queue:self.AudioQueue];
     
     if ([self.videoCaptureSession canAddOutput:audioOutput]) {
@@ -120,27 +119,29 @@ static CameraEncoder *selfClass =nil;
     self.audioConnection = [audioOutput connectionWithMediaType:AVMediaTypeAudio];
 }
 
-- (void)swapResolution{
-     [self.videoCaptureSession beginConfiguration];
+- (void)swapResolution {
+    [self.videoCaptureSession beginConfiguration];
+    
     NSString *resolution = [[NSUserDefaults standardUserDefaults] objectForKey:@"resolition"];
-    if ([resolution isEqualToString:@"480*640"]){
+    if ([resolution isEqualToString:@"480*640"]) {
         if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset640x480]) {
             self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset640x480;
         }
-    }else if ([resolution isEqualToString:@"720*1280"]){
+    } else if ([resolution isEqualToString:@"720*1280"]) {
         if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
             self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset1280x720;
         }
-    }else if ([resolution isEqualToString:@"1080*1920"]){
+    } else if ([resolution isEqualToString:@"1080*1920"]) {
         if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset1920x1080]) {
             self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
         }
-    }else if ([resolution isEqualToString:@"288*352"]){
+    } else if ([resolution isEqualToString:@"288*352"]) {
         if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset352x288]) {
             self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset352x288;
         }
     }
-     [self.videoCaptureSession commitConfiguration];
+    
+    [self.videoCaptureSession commitConfiguration];
 }
 
 #pragma mark - 设置视频 capture  3
@@ -151,24 +152,24 @@ static CameraEncoder *selfClass =nil;
 //    }
     
     NSString *resolution = [[NSUserDefaults standardUserDefaults] objectForKey:@"resolition"];
-   if ([resolution isEqualToString:@"480*640"]){
+    if ([resolution isEqualToString:@"480*640"]) {
         if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset640x480]) {
-              self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset640x480;
+            self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset640x480;
         }
-   }else if ([resolution isEqualToString:@"720*1280"]){
-       if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
-           self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset1280x720;
-       }
-   }else if ([resolution isEqualToString:@"1080*1920"]){
-       if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset1920x1080]) {
-           self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
-       }
-   }else if ([resolution isEqualToString:@"288*352"]){
-       if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset352x288]) {
-           self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset352x288;
-       }
-   }
-    //
+    } else if ([resolution isEqualToString:@"720*1280"]) {
+        if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
+            self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset1280x720;
+        }
+    } else if ([resolution isEqualToString:@"1080*1920"]) {
+        if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset1920x1080]) {
+            self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
+        }
+    } else if ([resolution isEqualToString:@"288*352"]) {
+        if ([self.videoCaptureSession canSetSessionPreset:AVCaptureSessionPreset352x288]) {
+            self.videoCaptureSession.sessionPreset = AVCaptureSessionPreset352x288;
+        }
+    }
+    
     //设置采集的 Video 和 Audio 格式，这两个是分开设置的，也就是说，你可以只采集视频。
     //配置采集输入源(摄像头)
     
@@ -611,8 +612,6 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
                            
                            nil ];
     
-    
-    
     //    _audioWriterInput = [AVAssetWriterInput
     //
     //                         assetWriterInputWithMediaType: AVMediaTypeAudio
@@ -628,15 +627,12 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
     //    [_videoWriter addInput:_audioWriterInput];
     
     [_videoWriter addInput:_videoWriterInput];
-    
 }
-
 
 #if TARGET_OS_IPHONE
 #pragma mark - AACEncoderDelegate declare
 
-- (void)gotAACEncodedData:(NSData *)data timestamp:(CMTime)timestamp error:(NSError*)error
-{
+- (void)gotAACEncodedData:(NSData *)data timestamp:(CMTime)timestamp error:(NSError*)error {
 //    NSLog(@"gotAACEncodedData %d", (int)[data length]);
 //
 //    if (fileAACHandle != NULL)
@@ -663,8 +659,6 @@ int easyPusher_Callback(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame
 
 }
 
-
 #endif
-
 
 @end

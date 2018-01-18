@@ -14,17 +14,15 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    NSString *host = [[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigIP"];
     
+    NSString *host = [[NSUserDefaults standardUserDefaults] objectForKey:@"ConfigIP"];
     if (!host || [host isEqualToString:@"www.easydarwin.org"]) {
         [[NSUserDefaults standardUserDefaults] setObject:@"cloud.easydarwin.org" forKey:@"ConfigIP"];
         [[NSUserDefaults standardUserDefaults] setObject:@"554" forKey:@"ConfigPORT"];
         [[NSUserDefaults standardUserDefaults] setObject:@"480*640" forKey:@"resolition"];                         
     }
-   
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 //    [[NSUserDefaults standardUserDefaults] setObject:@"192.168.66.108" forKey:@"ConfigIP"];
 //    [[NSUserDefaults standardUserDefaults] setObject:@"554" forKey:@"ConfigPORT"];

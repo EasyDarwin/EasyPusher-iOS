@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol SetDelegate<NSObject>
 
-- (void)setFinish;
-@end
 @interface EasySetingViewController : UIViewController
 
-@property(assign)id<SetDelegate>delegate;
 @end
