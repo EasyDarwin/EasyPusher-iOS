@@ -4,11 +4,6 @@ A simple, robust, low latency RTSP video&audio&screen stream pusher and recorder
 
 EasyPusher是EasyDarwin流媒体团队开发的一个RTSP/RTP流媒体音/视频直播推送产品组件，全平台支持(包括Windows/Linux(32 & 64)，ARM各平台，Android、iOS)，通过EasyPusher我们就可以避免接触到稍显复杂的RTSP/RTP/RTCP推送流程，只需要调用EasyPusher的几个API接口，就能轻松、稳定地把流媒体音视频数据推送给RTSP流媒体服务器进行转发和分发，尤其是与EasyDarwin开源RTSP流媒体服务器、EasyPlayer-RTSP播放器可以无缝衔接，EasyPusher经过长时间的企业用户和项目检验，稳定性非常高;
 
-## 分支说明 ##
-
-- master分支是EasyPusher APP (https://fir.im/EasyPusher) 的工程。如果需要验证Pusher的功能，可以使用这个工程进行编译运行，AS的版本无要求。
-- library分支主要面向开发者，实现将pusher功能集成到现有APP的场景。
-
 ## 功能点支持 ##
 
 - [x] 多分辨率选择；
