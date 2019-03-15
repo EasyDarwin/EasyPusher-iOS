@@ -1,4 +1,4 @@
-# EasyPusher-iOS
+# EasyPusher-iOS RTSP直播推流
 
 A simple, robust, low latency RTSP video&audio&screen stream pusher and recorder on iOS. 精炼、稳定、高效的iOS前/后摄像头/手机桌面屏幕采集、编码、RTSP直播推送工具，充分秉承了RTP在即时通信领域中的技术特点，网络条件满足的情况下，延时控制在300ms~500ms，非常适合于应急指挥、4G执法、远程遥控与直播等行业领域；
 
