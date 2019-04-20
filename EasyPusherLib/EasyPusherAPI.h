@@ -1,67 +1,64 @@
 /*
-	Copyright (c) 2013-2015 EasyDarwin.ORG.  All rights reserved.
+	Copyright (c) 2013-2019 EasyDarwin.ORG.  All rights reserved.
 	Github: https://github.com/EasyDarwin
 	WEChat: EasyDarwin
 	Website: http://www.easydarwin.org
- */
+*/
 #ifndef __EasyPusher_H__
 #define __EasyPusher_H__
 
 #include "EasyTypes.h"
 
-#define RTSP_CLIENT_NAME	"EasyPusher v1.16.0325"
-
+#define RTSP_CLIENT_NAME	"EasyPusher v2.0.19.0415"
 
 typedef struct __EASY_AV_Frame
 {
-    Easy_U32    u32AVFrameFlag;		/* å¸§æ ‡å¿—  è§†é¢‘ or éŸ³é¢‘ */
-    Easy_U32    u32AVFrameLen;		/* å¸§çš„é•¿åº¦ */
-    Easy_U32    u32VFrameType;		/* è§†é¢‘çš„ç±»å‹ï¼ŒIå¸§æˆ–På¸§ */
-    Easy_U8     *pBuffer;			/* æ•°æ® */
-    Easy_U32	u32TimestampSec;	/* æ—¶é—´æˆ³(ç§’)*/
-    Easy_U32	u32TimestampUsec;	/* æ—¶é—´æˆ³(å¾®ç§’) */
+    Easy_U32    u32AVFrameFlag;		/* Ö¡±êÖ¾  ÊÓÆµ or ÒôÆµ */
+    Easy_U32    u32AVFrameLen;		/* Ö¡µÄ³¤¶È */
+    Easy_U32    u32VFrameType;		/* ÊÓÆµµÄÀàĞÍ£¬IÖ¡»òPÖ¡ */
+    Easy_U8     *pBuffer;			/* Êı¾İ */
+	Easy_U32	u32TimestampSec;	/* Ê±¼ä´Á(Ãë)*/
+	Easy_U32	u32TimestampUsec;	/* Ê±¼ä´Á(Î¢Ãë) */
 }EASY_AV_Frame;
 
-/* æ¨é€äº‹ä»¶ç±»å‹å®šä¹‰ */
+/* ÍÆËÍÊÂ¼şÀàĞÍ¶¨Òå */
 typedef enum __EASY_PUSH_STATE_T
 {
-    EASY_PUSH_STATE_CONNECTING   =   1,     /* è¿æ¥ä¸­ */
-    EASY_PUSH_STATE_CONNECTED,              /* è¿æ¥æˆåŠŸ */
-    EASY_PUSH_STATE_CONNECT_FAILED,         /* è¿æ¥å¤±è´¥ */
-    EASY_PUSH_STATE_CONNECT_ABORT,          /* è¿æ¥å¼‚å¸¸ä¸­æ–­ */
-    EASY_PUSH_STATE_PUSHING,                /* æ¨æµä¸­ */
-    EASY_PUSH_STATE_DISCONNECTED,           /* æ–­å¼€è¿æ¥ */
+    EASY_PUSH_STATE_CONNECTING   =   1,     /* Á¬½ÓÖĞ */
+    EASY_PUSH_STATE_CONNECTED,              /* Á¬½Ó³É¹¦ */
+    EASY_PUSH_STATE_CONNECT_FAILED,         /* Á¬½ÓÊ§°Ü */
+    EASY_PUSH_STATE_CONNECT_ABORT,          /* Á¬½ÓÒì³£ÖĞ¶Ï */
+    EASY_PUSH_STATE_PUSHING,                /* ÍÆÁ÷ÖĞ */
+    EASY_PUSH_STATE_DISCONNECTED,           /* ¶Ï¿ªÁ¬½Ó */
     EASY_PUSH_STATE_ERROR
 }EASY_PUSH_STATE_T;
 
-/* æ¨é€å›è°ƒå‡½æ•°å®šä¹‰ _userptrè¡¨ç¤ºç”¨æˆ·è‡ªå®šä¹‰æ•°æ® */
+/* ÍÆËÍ»Øµ÷º¯Êı¶¨Òå _userptr±íÊ¾ÓÃ»§×Ô¶¨ÒåÊı¾İ */
 typedef int (*EasyPusher_Callback)(int _id, EASY_PUSH_STATE_T _state, EASY_AV_Frame *_frame, void *_userptr);
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-    
-    Easy_API Easy_I32 Easy_APICALL EasyPusher_Activate(char *license);
-    
-    /* åˆ›å»ºæ¨é€å¥æŸ„  è¿”å›ä¸ºå¥æŸ„å€¼ */
-    Easy_API Easy_Pusher_Handle Easy_APICALL EasyPusher_Create();
-    
-    /* é‡Šæ”¾æ¨é€å¥æŸ„ */
-    Easy_API Easy_U32 Easy_APICALL EasyPusher_Release(Easy_Pusher_Handle handle);
-    
-    /* è®¾ç½®æµä¼ è¾“äº‹ä»¶å›è°ƒ userpträ¼ è¾“è‡ªå®šä¹‰å¯¹è±¡æŒ‡é’ˆ*/
-    Easy_API Easy_U32 Easy_APICALL EasyPusher_SetEventCallback(Easy_Pusher_Handle handle,  EasyPusher_Callback callback, int id, void *userptr);
-    
-    /* å¼€å§‹æµä¼ è¾“ serverAddr:æµåª’ä½“æœåŠ¡å™¨åœ°å€ã€port:æµåª’ä½“ç«¯å£ã€streamName:æµåç§°<xxx.sdp>ã€username/password:æ¨é€æºå¸¦çš„ç”¨æˆ·åå¯†ç ã€pstruStreamInfo:æ¨é€çš„åª’ä½“å®šä¹‰ã€bufferKSize:ä»¥kä¸ºå•ä½çš„ç¼“å†²åŒºå¤§å°<512~2048ä¹‹é—´,é»˜è®¤512> bool createlogfile:åˆ›å»ºæ—¥å¿—æ–‡ä»¶*/
-    Easy_API Easy_U32 Easy_APICALL EasyPusher_StartStream(Easy_Pusher_Handle handle, char* serverAddr, Easy_U16 port, char* streamName, char *username, char *password, EASY_MEDIA_INFO_T*  pstruStreamInfo, Easy_U32 bufferKSize, Easy_Bool createlogfile );
-    
-    /* åœæ­¢æµä¼ è¾“ */
-    Easy_API Easy_U32 Easy_APICALL EasyPusher_StopStream(Easy_Pusher_Handle handle);
-    
-    /* æ¨æµ frame:å…·ä½“æ¨é€çš„æµåª’ä½“å¸§ */
-    Easy_API Easy_U32 Easy_APICALL EasyPusher_PushFrame(Easy_Pusher_Handle handle, EASY_AV_Frame* frame );
-    
+
+	/* ´´½¨ÍÆËÍ¾ä±ú  ·µ»ØÎª¾ä±úÖµ */
+	Easy_API Easy_Handle Easy_APICALL EasyPusher_Create();
+	
+	/* ÊÍ·ÅÍÆËÍ¾ä±ú */
+	Easy_API Easy_U32 Easy_APICALL EasyPusher_Release(Easy_Handle handle);
+
+    /* ÉèÖÃÁ÷´«ÊäÊÂ¼ş»Øµ÷ userptr´«Êä×Ô¶¨Òå¶ÔÏóÖ¸Õë*/
+    Easy_API Easy_U32 Easy_APICALL EasyPusher_SetEventCallback(Easy_Handle handle,  EasyPusher_Callback callback, int id, void *userptr);
+
+	/* ¿ªÊ¼Á÷´«Êä serverAddr:Á÷Ã½Ìå·şÎñÆ÷µØÖ·¡¢port:Á÷Ã½Ìå¶Ë¿Ú¡¢streamName:Á÷Ãû³Æ<xxx.sdp>¡¢username/password:ÍÆËÍĞ¯´øµÄÓÃ»§ÃûÃÜÂë¡¢pstruStreamInfo:ÍÆËÍµÄÃ½Ìå¶¨Òå¡¢bufferKSize:ÒÔkÎªµ¥Î»µÄ»º³åÇø´óĞ¡<512~2048Ö®¼ä,Ä¬ÈÏ512> bool createlogfile:´´½¨ÈÕÖ¾ÎÄ¼ş*/
+	Easy_API Easy_U32 Easy_APICALL EasyPusher_StartStream(Easy_Handle handle, char* serverAddr, Easy_U16 port, char* streamName, int rtpOverTcp/*1-tcp, 2-udp*/, char *username, char *password, EASY_MEDIA_INFO_T*  pstruStreamInfo, Easy_U32 bufferKSize, Easy_Bool createlogfile );
+
+	/* Í£Ö¹Á÷´«Êä */
+	Easy_API Easy_U32 Easy_APICALL EasyPusher_StopStream(Easy_Handle handle);
+
+	/* ÍÆÁ÷ frame:¾ßÌåÍÆËÍµÄÁ÷Ã½ÌåÖ¡ */
+	Easy_API Easy_U32 Easy_APICALL EasyPusher_PushFrame(Easy_Handle handle, EASY_AV_Frame* frame );
+
 #ifdef __cplusplus
 }
 #endif

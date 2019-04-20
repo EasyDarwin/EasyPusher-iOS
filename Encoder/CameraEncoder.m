@@ -26,7 +26,7 @@ static CameraEncoder *selfClass =nil;
     
     AACEncoder *aacEncoder;
     Easy_I32 isActivated;
-    Easy_Pusher_Handle handle;
+    Easy_Handle handle;
     
     dispatch_queue_t encodeQueue;
     
@@ -58,17 +58,6 @@ static CameraEncoder *selfClass =nil;
 #endif
     
     running = NO;
-    /*
-     *激活授权码，
-     *本Key为3个月临时授权License，如需商业使用，请邮件至support@easydarwin.org申请此产品的授权。
-     */
-    if (EasyPusher_Activate("6A36334A742F2B32734B794144474A636F35337A4A66564659584E355548567A614756794B56634D5671442F70654E4659584E355247467964326C755647566862556C7A5647686C516D567A644541794D4445345A57467A65513D3D") == 0) {
-        if (_delegate) {
-            [_delegate getConnectStatus:@"激活成功" isFist:1];
-        }
-    } else {
-        [_delegate getConnectStatus:@"激活失败" isFist:1];
-    }
     
     handle = EasyPusher_Create();
     EasyPusher_SetEventCallback(handle,easyPusher_Callback, 1, "123");
@@ -309,8 +298,7 @@ static CameraEncoder *selfClass =nil;
     char *name = malloc(strlen(exName)+1);
     strcpy(name, exName);
     
-    
-    EasyPusher_StartStream(handle, ConfigIP, atoi(ConfigPort), name, "admin", "admin", &mediainfo, 1024, false);//1M缓冲区
+    EasyPusher_StartStream(handle, ConfigIP, atoi(ConfigPort), name, EASY_RTP_OVER_TCP,"admin", "admin", &mediainfo, 1024, false);//1M缓冲区
     running = YES;
     free(ConfigIP);
     free(ConfigPort);
