@@ -30,9 +30,7 @@ static NSString *activeDay = @"activeDay";
     
     // 设置默认url
     if (!url || [url isEqualToString:@""] || [url containsString:@"www.easydss"]) {
-        // 因为rtsp流服务器没开启，暂时用rtmp测试
-//        NSMutableString *address = [[NSMutableString alloc] initWithString:@"rtsp://cloud.easydarwin.org:554/"];
-        NSMutableString *address = [[NSMutableString alloc] initWithString:@"rtmp://demo.easydss.com:10085/hls/stream_"];
+        NSMutableString *address = [[NSMutableString alloc] initWithString:@"rtsp://cloud.easydarwin.org:554/"];
         for (int i = 0; i < 6; i++) {
             int num = arc4random() % 10;
             [address appendString:[NSString stringWithFormat:@"%d",num]];
