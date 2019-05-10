@@ -447,6 +447,7 @@ static CameraEncoder *selfClass = nil;
     
     @try {
         NSString *url = [hostUrl stringByReplacingOccurrencesOfString:@"rtsp://" withString:@""];
+        url = [url stringByReplacingOccurrencesOfString:@"rtmp://" withString:@""];
         NSArray *arr = [url componentsSeparatedByString:@":"];
         NSArray *arr1 = [arr[1] componentsSeparatedByString:@"/"];
         
