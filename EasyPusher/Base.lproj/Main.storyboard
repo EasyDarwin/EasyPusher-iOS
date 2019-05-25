@@ -215,91 +215,39 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="412"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9sr-AA-SZz" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="935.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="634.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EasyRTSP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPf-vy-oXV">
-                                                <rect key="frame" x="12" y="30" width="296" height="20"/>
+                                                <rect key="frame" x="12" y="20" width="296" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKi-0f-vg0">
-                                                <rect key="frame" x="12" y="80" width="296" height="200.5"/>
-                                                <mutableString key="text">EasyPusher是EasyDarwin流媒体团队开发的一个RTSP/RTP流媒体音/视频直播推送产品组件，全平台支持(包括Windows/Linux(32 &amp; 64)，ARM各平台，Android、iOS)，通过EasyPusher我们就可以避免接触到稍显复杂的RTSP/RTP/RTCP推送流程，只需要调用EasyPusher的几个API接口，就能轻松、稳定地把流媒体音视频数据推送给RTSP流媒体服务器进行转发和分发，尤其是与EasyDarwin开源RTSP流媒体服务器、EasyPlayer-RTSP播放器可以无缝衔接，EasyPusher经过长时间的企业用户和项目检验，稳定性非常高;</mutableString>
+                                                <rect key="frame" x="12" y="60" width="296" height="317.5"/>
+                                                <mutableString key="text">EasyPusher是EasyDarwin流媒体团队开发的一个RTSP/RTP流媒体音/视频直播推送产品组件，全平台支持(包括Windows/Linux(32 &amp;#038; 64)，ARM各平台，Android、iOS)，通过EasyPusher我们就可以避免接触到稍显复杂的RTSP/RTP/RTCP推送流程，只需要调用EasyPusher的几个API接口，就能轻松、稳定地把流媒体音视频数据推送给RTSP流媒体服务器进行转发和分发，尤其是与EasyDarwin开源RTSP流媒体服务器、EasyPlayer-RTSP播放器可以无缝衔接，EasyPusher经过长时间的企业用户和项目检验，稳定性和实时性都非常高。项目地址：
+
+https://github.com/EasyDarwin/EasyPlayer
+
+您也可以升级到我们的EasyPlayer Pro全功能版 本，支持HTTP/RTSP/RTMP/HLS等多种流媒体协议！扫描如下的下载："</mutableString>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="配套方案推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVz-sc-VX4">
-                                                <rect key="frame" x="12" y="310.5" width="296" height="20"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" red="0.36862745099999999" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EasyRTSP推流组件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewV-EO-KNr">
-                                                <rect key="frame" x="98.5" y="350.5" width="123" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EasyPusher_Android" translatesAutoresizingMaskIntoConstraints="NO" id="n8L-ka-HV5">
-                                                <rect key="frame" x="20" y="367.5" width="130" height="200"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="easy_rtsp_player" translatesAutoresizingMaskIntoConstraints="NO" id="n8L-ka-HV5">
+                                                <rect key="frame" x="20" y="397.5" width="130" height="200"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EasyPusher_iOS" translatesAutoresizingMaskIntoConstraints="NO" id="sdv-X4-gjo">
-                                                <rect key="frame" x="170" y="367.5" width="130" height="200"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EasyRTSP Player" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwh-rE-eNJ">
+                                                <rect key="frame" x="30.5" y="597.5" width="109" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="easy_player_pro" translatesAutoresizingMaskIntoConstraints="NO" id="sdv-X4-gjo">
+                                                <rect key="frame" x="170" y="397.5" width="130" height="200"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Android" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJb-wv-Xv8">
-                                                <rect key="frame" x="59.5" y="567.5" width="51" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrA-5g-MZb">
-                                                <rect key="frame" x="223.5" y="567.5" width="23" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EasyDSS RTSP流媒体服务器：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83Y-Eo-oEq">
-                                                <rect key="frame" x="12" y="599.5" width="296" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EasyPlayerPro全功能播放器：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f54-f8-m0K">
-                                                <rect key="frame" x="12" y="656.5" width="296" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mh5-9d-1GN">
-                                                <rect key="frame" x="32" y="616.5" width="278" height="30"/>
-                                                <state key="normal" title="http://www.easydss.com"/>
-                                                <connections>
-                                                    <action selector="easyDSS:" destination="Efu-Ff-0Gz" eventType="touchUpInside" id="QbE-7s-TC8"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-C0-bhj">
-                                                <rect key="frame" x="32" y="673.5" width="278" height="30"/>
-                                                <state key="normal" title="https://github.com/EasyDSS/EasyPlayerPro"/>
-                                                <connections>
-                                                    <action selector="github:" destination="Efu-Ff-0Gz" eventType="touchUpInside" id="0e1-bw-Gta"/>
-                                                </connections>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pro_android" translatesAutoresizingMaskIntoConstraints="NO" id="Aow-ZN-a34">
-                                                <rect key="frame" x="0.0" y="718.5" width="160" height="130"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pro_ios" translatesAutoresizingMaskIntoConstraints="NO" id="RO4-HA-xwE">
-                                                <rect key="frame" x="160" y="718.5" width="160" height="130"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Android" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmT-Ck-w8Q">
-                                                <rect key="frame" x="54.5" y="858.5" width="51" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M64-oD-MDX">
-                                                <rect key="frame" x="228.5" y="858.5" width="23" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EasyPlayer Pro" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceO-gI-Avk">
+                                                <rect key="frame" x="187.5" y="597.5" width="95.5" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -307,47 +255,20 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="3gP-C0-bhj" firstAttribute="top" secondItem="f54-f8-m0K" secondAttribute="bottom" id="0AT-B4-pf6"/>
-                                            <constraint firstItem="f54-f8-m0K" firstAttribute="top" secondItem="Mh5-9d-1GN" secondAttribute="bottom" constant="10" id="3N1-qV-9hj"/>
-                                            <constraint firstItem="BmT-Ck-w8Q" firstAttribute="centerX" secondItem="Aow-ZN-a34" secondAttribute="centerX" id="4Lo-tO-siT"/>
-                                            <constraint firstItem="83Y-Eo-oEq" firstAttribute="top" secondItem="eJb-wv-Xv8" secondAttribute="bottom" constant="15" id="5Ie-0y-sWs"/>
-                                            <constraint firstItem="kVz-sc-VX4" firstAttribute="top" secondItem="jKi-0f-vg0" secondAttribute="bottom" constant="30" id="5Uh-Go-6nB"/>
+                                            <constraint firstItem="n8L-ka-HV5" firstAttribute="top" secondItem="jKi-0f-vg0" secondAttribute="bottom" constant="20" id="2py-PC-cbp"/>
                                             <constraint firstItem="n8L-ka-HV5" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="20" id="5bK-f8-9CS"/>
-                                            <constraint firstItem="jKi-0f-vg0" firstAttribute="top" secondItem="zPf-vy-oXV" secondAttribute="bottom" constant="30" id="7bs-9K-MGi"/>
-                                            <constraint firstAttribute="trailing" secondItem="RO4-HA-xwE" secondAttribute="trailing" id="9ve-ux-edK"/>
+                                            <constraint firstItem="jKi-0f-vg0" firstAttribute="top" secondItem="zPf-vy-oXV" secondAttribute="bottom" constant="20" id="7bs-9K-MGi"/>
+                                            <constraint firstAttribute="bottom" secondItem="fwh-rE-eNJ" secondAttribute="bottom" constant="20" id="97s-aj-54Z"/>
                                             <constraint firstItem="sdv-X4-gjo" firstAttribute="top" secondItem="n8L-ka-HV5" secondAttribute="top" id="AHW-JO-IQS"/>
+                                            <constraint firstItem="ceO-gI-Avk" firstAttribute="top" secondItem="sdv-X4-gjo" secondAttribute="bottom" id="Cek-Vf-eNl"/>
                                             <constraint firstAttribute="trailing" secondItem="zPf-vy-oXV" secondAttribute="trailing" constant="12" id="EXb-PV-BZc"/>
-                                            <constraint firstItem="M64-oD-MDX" firstAttribute="top" secondItem="RO4-HA-xwE" secondAttribute="bottom" constant="10" id="EkG-4l-5Fv"/>
-                                            <constraint firstItem="wrA-5g-MZb" firstAttribute="centerX" secondItem="sdv-X4-gjo" secondAttribute="centerX" id="FYt-pG-cEE"/>
-                                            <constraint firstItem="f54-f8-m0K" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="12" id="IiO-2T-eYP"/>
-                                            <constraint firstItem="n8L-ka-HV5" firstAttribute="top" secondItem="ewV-EO-KNr" secondAttribute="bottom" id="KBs-eO-AiW"/>
-                                            <constraint firstItem="M64-oD-MDX" firstAttribute="centerX" secondItem="RO4-HA-xwE" secondAttribute="centerX" id="KZ8-1I-xS2"/>
-                                            <constraint firstAttribute="trailing" secondItem="kVz-sc-VX4" secondAttribute="trailing" constant="12" id="LwE-fo-PkB"/>
-                                            <constraint firstItem="3gP-C0-bhj" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="32" id="MGe-4k-cbW"/>
-                                            <constraint firstItem="Aow-ZN-a34" firstAttribute="top" secondItem="3gP-C0-bhj" secondAttribute="bottom" constant="15" id="N72-Zm-0rO"/>
-                                            <constraint firstItem="RO4-HA-xwE" firstAttribute="width" secondItem="Aow-ZN-a34" secondAttribute="width" id="ORX-jJ-sL5"/>
-                                            <constraint firstItem="Mh5-9d-1GN" firstAttribute="top" secondItem="83Y-Eo-oEq" secondAttribute="bottom" id="Rbc-fW-jy7"/>
-                                            <constraint firstItem="83Y-Eo-oEq" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="12" id="Rxd-qX-AjB"/>
+                                            <constraint firstItem="ceO-gI-Avk" firstAttribute="centerX" secondItem="sdv-X4-gjo" secondAttribute="centerX" id="OAV-Hk-Nzi"/>
                                             <constraint firstItem="jKi-0f-vg0" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="12" id="T2r-dT-iJh"/>
-                                            <constraint firstAttribute="trailing" secondItem="Mh5-9d-1GN" secondAttribute="trailing" constant="10" id="TZr-0E-1sE"/>
-                                            <constraint firstItem="RO4-HA-xwE" firstAttribute="leading" secondItem="Aow-ZN-a34" secondAttribute="trailing" id="Tp2-Ap-amj"/>
-                                            <constraint firstItem="wrA-5g-MZb" firstAttribute="top" secondItem="sdv-X4-gjo" secondAttribute="bottom" id="U0w-eN-fz3"/>
-                                            <constraint firstItem="Mh5-9d-1GN" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="32" id="YWf-jE-KcU"/>
-                                            <constraint firstAttribute="bottom" secondItem="M64-oD-MDX" secondAttribute="bottom" constant="60" id="cbL-lm-aA7"/>
-                                            <constraint firstAttribute="trailing" secondItem="3gP-C0-bhj" secondAttribute="trailing" constant="10" id="cfd-B6-X3D"/>
-                                            <constraint firstItem="zPf-vy-oXV" firstAttribute="top" secondItem="9sr-AA-SZz" secondAttribute="top" constant="30" id="eKE-Wa-tUR"/>
-                                            <constraint firstItem="BmT-Ck-w8Q" firstAttribute="top" secondItem="Aow-ZN-a34" secondAttribute="bottom" constant="10" id="eXO-FI-9ba"/>
-                                            <constraint firstItem="eJb-wv-Xv8" firstAttribute="top" secondItem="n8L-ka-HV5" secondAttribute="bottom" id="fFv-XT-x1u"/>
+                                            <constraint firstItem="zPf-vy-oXV" firstAttribute="top" secondItem="9sr-AA-SZz" secondAttribute="top" constant="20" id="eKE-Wa-tUR"/>
                                             <constraint firstItem="sdv-X4-gjo" firstAttribute="leading" secondItem="n8L-ka-HV5" secondAttribute="trailing" constant="20" id="fIO-cy-Jum"/>
-                                            <constraint firstItem="Aow-ZN-a34" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" id="gHc-xT-WeT"/>
-                                            <constraint firstAttribute="trailing" secondItem="f54-f8-m0K" secondAttribute="trailing" constant="12" id="io9-0M-MDH"/>
-                                            <constraint firstItem="RO4-HA-xwE" firstAttribute="top" secondItem="Aow-ZN-a34" secondAttribute="top" id="j1B-yX-1FV"/>
-                                            <constraint firstAttribute="trailing" secondItem="83Y-Eo-oEq" secondAttribute="trailing" constant="12" id="oJC-YG-GOF"/>
-                                            <constraint firstItem="ewV-EO-KNr" firstAttribute="centerX" secondItem="9sr-AA-SZz" secondAttribute="centerX" id="s7R-tw-k2y"/>
-                                            <constraint firstItem="ewV-EO-KNr" firstAttribute="top" secondItem="kVz-sc-VX4" secondAttribute="bottom" constant="20" id="sST-GR-RLF"/>
-                                            <constraint firstItem="eJb-wv-Xv8" firstAttribute="centerX" secondItem="n8L-ka-HV5" secondAttribute="centerX" id="ssC-sB-cLC"/>
+                                            <constraint firstItem="fwh-rE-eNJ" firstAttribute="centerX" secondItem="n8L-ka-HV5" secondAttribute="centerX" id="oyb-Tg-fET"/>
+                                            <constraint firstItem="fwh-rE-eNJ" firstAttribute="top" secondItem="n8L-ka-HV5" secondAttribute="bottom" id="ut1-Ar-8Zg"/>
                                             <constraint firstAttribute="trailing" secondItem="jKi-0f-vg0" secondAttribute="trailing" constant="12" id="vFd-Sg-Kws"/>
-                                            <constraint firstItem="kVz-sc-VX4" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="12" id="yqR-SI-8FU"/>
                                             <constraint firstItem="zPf-vy-oXV" firstAttribute="leading" secondItem="9sr-AA-SZz" secondAttribute="leading" constant="12" id="yqp-EN-bu1"/>
                                             <constraint firstItem="sdv-X4-gjo" firstAttribute="width" secondItem="n8L-ka-HV5" secondAttribute="width" id="ywj-Df-zmS"/>
                                             <constraint firstAttribute="trailing" secondItem="sdv-X4-gjo" secondAttribute="trailing" constant="20" id="zbI-V0-wgo"/>
@@ -1081,11 +1002,9 @@ Cgo
         </scene>
     </scenes>
     <resources>
-        <image name="EasyPusher_Android" width="200" height="200"/>
-        <image name="EasyPusher_iOS" width="200" height="200"/>
         <image name="back" width="42" height="16"/>
-        <image name="pro_android" width="130" height="130"/>
-        <image name="pro_ios" width="130" height="130"/>
+        <image name="easy_player_pro" width="200" height="200"/>
+        <image name="easy_rtsp_player" width="200" height="200"/>
         <image name="push_setting" width="400" height="211"/>
         <image name="reverse" width="26" height="21"/>
         <image name="scan" width="19" height="19"/>
