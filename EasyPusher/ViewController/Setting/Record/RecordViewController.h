@@ -2,8 +2,8 @@
 //  RecordViewController.h
 //  EasyRTMP
 //
-//  Created by mac on 2018/7/9.
-//  Copyright © 2018年 phylony. All rights reserved.
+//  Created by leo on 2018/7/9.
+//  Copyright © 2018年 leo. All rights reserved.
 //
 
 #import "BaseViewController.h"

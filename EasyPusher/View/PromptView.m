@@ -1,9 +1,9 @@
 //
 //  PromptView.m
-//  AcrossAnHui
+//  Easy
 //
-//  Created by liyy on 2017/5/24.
-//  Copyright © 2017年 安徽畅通行. All rights reserved.
+//  Created by leo on 2017/5/24.
+//  Copyright © 2017年 leo. All rights reserved.
 //
 
 #import "PromptView.h"
@@ -61,7 +61,7 @@
     // 描述
     _label = [[UILabel alloc] init];
     _label.font = [UIFont systemFontOfSize:15];
-    _label.textColor = HRGColor(108, 108, 108);
+    _label.textColor = EasyColor(108, 108, 108);
     [self addSubview:_label];
     [_label makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
@@ -72,15 +72,15 @@
     _operationBtn = [[UIButton alloc] init];
     _operationBtn.backgroundColor = UIColorFromRGB(ThemeColor);
     [_operationBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _operationBtn.titleLabel.font = [UIFont systemFontOfSize:HRGTextFont];
-    HRGViewBorderRadius(_operationBtn, 5, 0, [UIColor clearColor]);
+    _operationBtn.titleLabel.font = [UIFont systemFontOfSize:EasyTextFont];
+    EasyViewBorderRadius(_operationBtn, 5, 0, [UIColor clearColor]);
     [_operationBtn addTarget:self action:@selector(operation) forControlEvents:UIControlEventTouchUpInside];
     _operationBtn.hidden = YES;
     [self addSubview:_operationBtn];
     [_operationBtn makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.top.equalTo(self.label.bottom).offset(@15);
-        make.width.equalTo(HRGScreenWidth - 100);
+        make.width.equalTo(EasyScreenWidth - 100);
         make.height.equalTo(@40);
     }];
 }

@@ -36,8 +36,8 @@
 
 - (WKWebView *) wkWebView {
     if (!_wkWebView) {
-        CGFloat top = HRGBarHeight + HRGNavHeight;
-        CGRect frame = CGRectMake(0, top, HRGScreenWidth, HRGScreenHeight - top);
+        CGFloat top = EasyBarHeight + EasyNavHeight;
+        CGRect frame = CGRectMake(0, top, EasyScreenWidth, EasyScreenHeight - top);
         _wkWebView = [[WKWebView alloc] initWithFrame:frame configuration:self.wkConfig];
         _wkWebView.navigationDelegate = self;
         _wkWebView.UIDelegate = self;
@@ -59,8 +59,8 @@
 
 - (void) addView {
     // 初始化progressView
-    CGFloat top = HRGBarHeight + HRGNavHeight;
-    CGRect frame = CGRectMake(0, top, HRGScreenWidth, 2);
+    CGFloat top = EasyBarHeight + EasyNavHeight;
+    CGRect frame = CGRectMake(0, top, EasyScreenWidth, 2);
     self.progressView = [[UIProgressView alloc] initWithFrame:frame];
     self.progressView.tintColor = UIColorFromRGB(0xff0000);
     //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.

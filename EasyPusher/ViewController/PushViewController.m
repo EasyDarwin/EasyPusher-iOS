@@ -2,8 +2,8 @@
 //  ViewController.m
 //  EasyCapture
 //
-//  Created by lyy on 9/7/18.
-//  Copyright © 2018 lyy. All rights reserved.
+//  Created by leo on 9/7/18.
+//  Copyright © 2018 leo. All rights reserved.
 //
 
 #import "PushViewController.h"
@@ -57,8 +57,8 @@
     self.encoder = [[CameraEncoder alloc] init];
     self.encoder.delegate = self;
     
-    int days = [self.encoder initCameraWithOutputSize:CGSizeMake(HRGScreenWidth, HRGScreenHeight) resolution:[self captureSessionPreset]];
-    self.encoder.previewLayer.frame = CGRectMake(0, 0, HRGScreenWidth, HRGScreenHeight);
+    int days = [self.encoder initCameraWithOutputSize:CGSizeMake(EasyScreenWidth, EasyScreenHeight) resolution:[self captureSessionPreset]];
+    self.encoder.previewLayer.frame = CGRectMake(0, 0, EasyScreenWidth, EasyScreenHeight);
     self.encoder.orientation = AVCaptureVideoOrientationPortrait;
     [self.contentView.layer addSublayer:self.encoder.previewLayer];
     
@@ -74,7 +74,7 @@
     
     self.prev = self.encoder.previewLayer;
     [[self.prev connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
-    self.prev.frame = CGRectMake(0, 0, HRGScreenWidth, HRGScreenHeight);
+    self.prev.frame = CGRectMake(0, 0, EasyScreenWidth, EasyScreenHeight);
     
     self.encoder.previewLayer.hidden = NO;
     [self.encoder startCapture];
@@ -114,9 +114,9 @@
 #pragma mark - UI
 
 - (void)setUI {
-    self.topViewMarginTop.constant = HRGBarHeight + 10;
-    self.mainViewWidth.constant = HRGScreenWidth;
-    self.mainViewHeight.constant = HRGScreenHeight;
+    self.topViewMarginTop.constant = EasyBarHeight + 10;
+    self.mainViewWidth.constant = EasyScreenWidth;
+    self.mainViewHeight.constant = EasyScreenHeight;
     
     [self.resolutionBtn setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
     [self.resolutionBtn setTitleColor:UIColorFromRGB(ThemeColor) forState:UIControlStateHighlighted];
@@ -279,8 +279,8 @@
 
     if (self.screenBtn.selected) {
         // UI 横屏
-        self.mainViewWidth.constant = HRGScreenHeight;
-        self.mainViewHeight.constant = HRGScreenWidth;
+        self.mainViewWidth.constant = EasyScreenHeight;
+        self.mainViewHeight.constant = EasyScreenWidth;
         self.mainView.transform = CGAffineTransformMakeRotation(M_PI_2);
         [self.mainView updateConstraintsIfNeeded];
         [self.mainView layoutIfNeeded];
@@ -290,8 +290,8 @@
         self.encoder.outputSize = CGSizeMake(height, width);
     } else {
         // UI 竖屏
-        self.mainViewWidth.constant = HRGScreenWidth;
-        self.mainViewHeight.constant = HRGScreenHeight;
+        self.mainViewWidth.constant = EasyScreenWidth;
+        self.mainViewHeight.constant = EasyScreenHeight;
         self.mainView.transform = CGAffineTransformIdentity;
         [self.mainView updateConstraintsIfNeeded];
         [self.mainView layoutIfNeeded];

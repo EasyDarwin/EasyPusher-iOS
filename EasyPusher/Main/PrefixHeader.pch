@@ -2,8 +2,8 @@
 //  PrefixHeader.pch
 //  EasyRTSP
 //
-//  Created by lyy on 9/7/18.
-//  Copyright © 2018 lyy. All rights reserved.
+//  Created by leo on 9/7/18.
+//  Copyright © 2018 leo. All rights reserved.
 //
 
 #ifndef PrefixHeader_pch
@@ -14,23 +14,18 @@
 //是否iPhoneX YES:iPhoneX屏幕 NO:传统屏幕
 #define kIs_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
-// ---------------- Self ----------------
-#define WeakSelf __weak typeof(self) weakSelf = self;
-#define HRGWeakSelf(type)  __weak typeof(type) weak##type = type;
-#define HRGStrongSelf(type)  __strong typeof(type) type = weak##type;
-
 // ---------------- 屏幕宽高 ----------------
-#define HRGScreenWidth [[UIScreen mainScreen] bounds].size.width
-#define HRGScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define EasyScreenWidth [[UIScreen mainScreen] bounds].size.width
+#define EasyScreenHeight [[UIScreen mainScreen] bounds].size.height
 
-//#define HRGBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
-//#define HRGNavHeight self.navigationController.navigationBar.frame.size.height
-#define HRGBarHeight (kIs_iPhoneX ? 44 : 20)
-#define HRGNavHeight 44
-#define HRGTabBarHeight (kIs_iPhoneX ? (49 + 34) : 49)
+//#define EasyBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+//#define EasyNavHeight self.navigationController.navigationBar.frame.size.height
+#define EasyBarHeight (kIs_iPhoneX ? 44 : 20)
+#define EasyNavHeight 44
+#define EasyTabBarHeight (kIs_iPhoneX ? (49 + 34) : 49)
 
 // ---------------- 设置圆角和边框 ----------------
-#define HRGViewBorderRadius(View, Radius, Width, Color)\
+#define EasyViewBorderRadius(View, Radius, Width, Color)\
 \
 [View.layer setCornerRadius:(Radius)];\
 [View.layer setMasksToBounds:YES];\
@@ -48,11 +43,11 @@
 
 #define UIColorFromRGBA(rgbValue,trans) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:trans]
 
-#define HRGColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define EasyColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 #define ThemeColor 0x5E90FF
-#define HRGTextBlackColor 0x333333
+#define EasyTextBlackColor 0x333333
 
-#define HRGTextFont 15.0
+#define EasyTextFont 15.0
 
 #endif /* PrefixHeader_pch */

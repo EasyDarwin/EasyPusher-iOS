@@ -23,14 +23,14 @@
     
     self.view.backgroundColor =UIColorFromRGBA(0x000000, 0.3);
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, HRGScreenWidth, HRGScreenHeight)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, EasyScreenWidth, EasyScreenHeight)];
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeView)];
     [view addGestureRecognizer:gesture];
     [self.view addSubview:view];
     
     self.tableView = [[UITableView alloc] init];
     CGFloat w = 200, h = 54 * 4 + 70 + 10;
-    self.tableView.frame = CGRectMake((HRGScreenWidth - w) / 2, (HRGScreenHeight - h) / 2, w, h);
+    self.tableView.frame = CGRectMake((EasyScreenWidth - w) / 2, (EasyScreenHeight - h) / 2, w, h);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 54.0;
@@ -39,7 +39,7 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tableView];
     
-    HRGViewBorderRadius(self.tableView, 5.0, 0, [UIColor clearColor]);
+    EasyViewBorderRadius(self.tableView, 5.0, 0, [UIColor clearColor]);
 }
 
 - (NSArray *)resolutionArray{

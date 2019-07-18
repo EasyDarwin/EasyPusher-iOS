@@ -35,7 +35,7 @@
     layout.minimumLineSpacing = 0;
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical];// 设置collectionView的滚动方向
     
-    CGRect frame = CGRectMake(2, 0, HRGScreenWidth - 4, HRGScreenHeight - HRGBarHeight - HRGNavHeight - 47);
+    CGRect frame = CGRectMake(2, 0, EasyScreenWidth - 4, EasyScreenHeight - EasyBarHeight - EasyNavHeight - 47);
     self.collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -124,12 +124,12 @@
 
 // 头部的尺寸
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(HRGScreenWidth, 0);
+    return CGSizeMake(EasyScreenWidth, 0);
 }
 
 // 尾部的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return CGSizeMake(HRGScreenWidth, 0);
+    return CGSizeMake(EasyScreenWidth, 0);
 }
 
 // section的margin

@@ -38,9 +38,9 @@
     
     self.navigationItem.title = @"设置";
     
-    HRGViewBorderRadius(self.topView, 3.0, 1.5, UIColorFromRGB(ThemeColor));
-    HRGViewBorderRadius(self.recordBtn, 3.0, 0, [UIColor clearColor]);
-    HRGViewBorderRadius(self.saveBtn, 3.0, 0, [UIColor clearColor]);
+    EasyViewBorderRadius(self.topView, 3.0, 1.5, UIColorFromRGB(ThemeColor));
+    EasyViewBorderRadius(self.recordBtn, 3.0, 0, [UIColor clearColor]);
+    EasyViewBorderRadius(self.saveBtn, 3.0, 0, [UIColor clearColor]);
 
     [self.codeBtn setImage:[UIImage imageNamed:@"set_select"] forState:UIControlStateNormal];
     [self.codeBtn setImage:[UIImage imageNamed:@"set_selected"] forState:UIControlStateSelected];

@@ -2,8 +2,8 @@
 //  CameraEncoder.m
 //  EasyCapture
 //
-//  Created by lyy on 9/7/18.
-//  Copyright © 2018 lyy. All rights reserved.
+//  Created by leo on 9/7/18.
+//  Copyright © 2018 leo. All rights reserved.
 //
 
 #import "CameraEncoder.h"
