@@ -107,7 +107,7 @@
 
     self.navigationController.navigationBarHidden = NO;
     
-    [self.encoder stopRecord];
+    [self.encoder stopCamera];
     self.recordBtn.selected = NO;// 到后台则停止录像
 }
 
