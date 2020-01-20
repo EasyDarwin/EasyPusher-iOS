@@ -57,7 +57,7 @@
     self.encoder = [[CameraEncoder alloc] init];
     self.encoder.delegate = self;
     
-    int days = [self.encoder initCameraWithOutputSize:CGSizeMake(EasyScreenWidth, EasyScreenHeight) resolution:[self captureSessionPreset]];
+    int days = [self.encoder initCameraWithOutputSize:[self captureSessionSize] resolution:[self captureSessionPreset]];
     self.encoder.previewLayer.frame = CGRectMake(0, 0, EasyScreenWidth, EasyScreenHeight);
     self.encoder.orientation = AVCaptureVideoOrientationPortrait;
     [self.contentView.layer addSublayer:self.encoder.previewLayer];
@@ -185,6 +185,21 @@
 
 - (void)onSelecedesolution:(NSInteger)resolutionNo {
     [self.encoder swapResolution:[self captureSessionPreset]];
+    
+    NSString *resolution = [URLTool gainResolition];
+    NSArray *resolutionArray = [resolution componentsSeparatedByString:@"*"];
+    int width = [resolutionArray[0] intValue];
+    int height = [resolutionArray[1] intValue];
+    if (self.screenBtn.selected) {
+        // 横屏推流
+        self.encoder.orientation = AVCaptureVideoOrientationLandscapeRight;
+        self.encoder.outputSize = CGSizeMake(height, width);
+    } else {
+        // 竖屏推流
+        self.encoder.orientation = AVCaptureVideoOrientationPortrait;
+        self.encoder.outputSize = CGSizeMake(width, height);
+    }
+    
     [self.resolutionBtn setTitle:[NSString stringWithFormat:@"分辨率：%@", [URLTool gainResolition]] forState:UIControlStateNormal];
 }
 
@@ -202,6 +217,21 @@
         return AVCaptureSessionPreset1920x1080;
     } else {
         return AVCaptureSessionPreset1280x720;
+    }
+}
+
+- (CGSize) captureSessionSize {
+    NSString *resolution = [URLTool gainResolition];
+    if ([resolution isEqualToString:@"288*352"]) {
+        return CGSizeMake(288, 352);
+    } else if ([resolution isEqualToString:@"480*640"]) {
+        return CGSizeMake(480, 640);
+    } else if ([resolution isEqualToString:@"720*1280"]) {
+        return CGSizeMake(720, 1280);
+    } else if ([resolution isEqualToString:@"1080*1920"]) {
+        return CGSizeMake(1080, 1920);
+    } else {
+        return CGSizeMake(720, 1280);
     }
 }
 
