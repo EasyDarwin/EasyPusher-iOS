@@ -33,7 +33,7 @@ EasyPusher是EasyDarwin流媒体团队开发的一个RTSP/RTP流媒体音/视频
 
 ## 版本下载 ##
 
-- Android [https://fir.im/EasyPusher](https://fir.im/EasyPusher "EasyPusher_Android")
+- Android [http://app.tsingsee.com/EasyPusher](http://app.tsingsee.com/EasyPusher "EasyPusher_Android")
 
 ![EasyPusher_Android](http://www.easydarwin.org/github/images/app/2020/easypusher_android.png)
 
